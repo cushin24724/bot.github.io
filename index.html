@@ -2,51 +2,313 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Website đầu tiên của tôi</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #f1f5f9;
-            text-align: center;
-            padding: 60px 20px;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Portfolio cá nhân, kỹ năng lập trình C# và các dự án .NET.">
+  <title>IT Portfolio | C# Developer</title>
 
-        .card {
-            max-width: 500px;
-            margin: auto;
-            padding: 30px;
-            background: white;
-            border-radius: 16px;
-            box-shadow: 0 4px 20px #0001;
-        }
+  <style>
+    :root {
+      --bg: #0b1120;
+      --panel: #121c30;
+      --text: #e8eef8;
+      --muted: #a2b0c5;
+      --blue: #60a5fa;
+      --border: #29364d;
+    }
 
-        h1 { color: #2563eb; }
+    * { box-sizing: border-box; scroll-behavior: smooth; }
 
-        button {
-            padding: 12px 20px;
-            border: none;
-            border-radius: 8px;
-            background: #2563eb;
-            color: white;
-            cursor: pointer;
-        }
-    </style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    a { color: var(--blue); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .container {
+      width: min(1000px, 90%);
+      margin: auto;
+    }
+
+    header {
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      background: #0b1120f2;
+      backdrop-filter: blur(10px);
+      z-index: 10;
+    }
+
+    nav {
+      min-height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .logo { font-size: 20px; font-weight: bold; }
+    .logo span { color: var(--blue); }
+
+    nav .links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      font-size: 14px;
+    }
+
+    .hero { padding: 90px 0 70px; }
+
+    .tag {
+      display: inline-block;
+      color: var(--blue);
+      border: 1px solid #34527c;
+      background: #142540;
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 13px;
+    }
+
+    h1 {
+      font-size: clamp(34px, 6vw, 58px);
+      line-height: 1.2;
+      margin: 22px 0;
+    }
+
+    h1 span { color: var(--blue); }
+
+    .intro {
+      max-width: 680px;
+      color: var(--muted);
+      font-size: 17px;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 10px 18px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      color: var(--text);
+    }
+
+    .btn.primary {
+      color: #08111f;
+      background: var(--blue);
+      border-color: var(--blue);
+      font-weight: bold;
+    }
+
+    section { padding: 48px 0; }
+
+    .section-title {
+      font-size: 27px;
+      margin: 0 0 8px;
+    }
+
+    .section-desc {
+      color: var(--muted);
+      margin-top: 0;
+      margin-bottom: 25px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .card {
+      padding: 23px;
+      border: 1px solid var(--border);
+      background: var(--panel);
+      border-radius: 14px;
+    }
+
+    .card h3 { margin-top: 0; }
+    .card p, .card li { color: var(--muted); }
+
+    .skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .skill {
+      padding: 7px 13px;
+      background: #142540;
+      color: #c8e0ff;
+      border: 1px solid #293f60;
+      border-radius: 8px;
+      font-size: 14px;
+    }
+
+    .project-code {
+      color: var(--blue);
+      font-size: 13px;
+      font-weight: bold;
+    }
+
+    .contact { text-align: center; }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 24px 0;
+      text-align: center;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    @media (max-width: 600px) {
+      nav { align-items: flex-start; padding: 15px 0; }
+      nav .links { gap: 8px 12px; }
+      .grid { grid-template-columns: 1fr; }
+      .hero { padding-top: 60px; }
+    }
+  </style>
 </head>
-<body>
-    <div class="card">
-        <h1>Xin chào!</h1>
-        <p>Đây là website đầu tiên của tôi.</p>
-        <button onclick="chao()">Bấm vào đây</button>
-        <p id="ketqua"></p>
-    </div>
 
-    <script>
-        function chao() {
-            document.getElementById("ketqua").textContent =
-                "Chúc mừng! Website của bạn đang hoạt động.";
-        }
-    </script>
+<body>
+  <header>
+    <nav class="container">
+      <a class="logo" href="#home">My<span>Portfolio</span></a>
+      <div class="links">
+        <a href="#about">Giới thiệu</a>
+        <a href="#skills">Kỹ năng</a>
+        <a href="#projects">Dự án</a>
+        <a href="#contact">Liên hệ</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero container" id="home">
+      <span class="tag">IT PORTFOLIO · C# / .NET</span>
+
+      <h1>Xin chào, tôi là<br><span>[Tên của bạn]</span></h1>
+
+      <p class="intro">
+        Tôi đang phát triển kỹ năng lập trình C# và xây dựng
+        ứng dụng web. Tôi mong muốn có cơ hội làm việc trong lĩnh vực
+        IT, học hỏi từ đội ngũ phát triển và tạo ra các sản phẩm hữu ích.
+      </p>
+
+      <div class="actions">
+        <a class="btn primary" href="#projects">Xem dự án của tôi</a>
+        <a class="btn" href="#contact">Liên hệ với tôi</a>
+      </div>
+    </section>
+
+    <section class="container" id="about">
+      <h2 class="section-title">Giới thiệu bản thân</h2>
+      <p class="section-desc">
+        Một vài thông tin về định hướng nghề nghiệp của tôi.
+      </p>
+
+      <div class="card">
+        <p>
+          Tôi đang học và thực hành lập trình với C#, đồng thời tìm hiểu
+          cách xây dựng website bằng HTML, CSS và ASP.NET.
+        </p>
+        <p>
+          Tôi chú trọng việc viết code dễ hiểu, sửa lỗi có phương pháp
+          và từng bước hoàn thiện dự án thực tế để nâng cao kỹ năng.
+        </p>
+        <p>
+          Mục tiêu của tôi là phát triển thành lập trình viên C#/.NET,
+          có thể tham gia xây dựng, kiểm thử và bảo trì ứng dụng.
+        </p>
+        <p><strong>Vị trí mong muốn:</strong> Junior C# Developer / .NET Developer</p>
+      </div>
+    </section>
+
+    <section class="container" id="skills">
+      <h2 class="section-title">Kỹ năng IT</h2>
+      <p class="section-desc">
+        Các công nghệ tôi đang học và thực hành.
+      </p>
+
+      <div class="skills">
+        <span class="skill">C#</span>
+        <span class="skill">.NET</span>
+        <span class="skill">HTML5</span>
+        <span class="skill">CSS3</span>
+        <span class="skill">JavaScript cơ bản</span>
+        <span class="skill">Git / GitHub</span>
+        <span class="skill">SQL Server — đang học</span>
+        <span class="skill">ASP.NET Core — đang học</span>
+      </div>
+    </section>
+
+    <section class="container" id="projects">
+      <h2 class="section-title">Dự án cá nhân</h2>
+      <p class="section-desc">
+        Hãy bổ sung các dự án thật của bạn vào đây.
+      </p>
+
+      <div class="grid">
+        <article class="card">
+          <span class="project-code">PROJECT 01</span>
+          <h3>Website Portfolio cá nhân</h3>
+          <p>
+            Website giới thiệu bản thân, kỹ năng lập trình và các dự án.
+            Được xây dựng bằng HTML, CSS và triển khai bằng GitHub Pages.
+          </p>
+          <p><strong>Công nghệ:</strong> HTML, CSS, GitHub Pages</p>
+          <a href="https://github.com/cushin24724/bot.github.io"
+             target="_blank" rel="noopener noreferrer">
+            Xem mã nguồn →
+          </a>
+        </article>
+
+        <article class="card">
+          <span class="project-code">PROJECT 02</span>
+          <h3>[Tên dự án C# của bạn]</h3>
+          <p>
+            [Mô tả chức năng, vấn đề dự án giải quyết và những gì
+            bạn đã tự xây dựng.]
+          </p>
+          <p><strong>Công nghệ:</strong> C#, [công nghệ khác]</p>
+          <span>Đang phát triển</span>
+        </article>
+      </div>
+    </section>
+
+    <section class="container" id="contact">
+      <div class="card contact">
+        <h2 class="section-title">Kết nối với tôi</h2>
+        <p class="section-desc">
+          Tôi sẵn sàng trao đổi về cơ hội việc làm và các dự án IT.
+        </p>
+
+        <p>Email: <a href="mailto:YOUR_EMAIL@example.com">
+          YOUR_EMAIL@example.com
+        </a></p>
+
+        <p>
+          GitHub:
+          <a href="https://github.com/cushin24724"
+             target="_blank" rel="noopener noreferrer">
+            github.com/cushin24724
+          </a>
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © 2026 Vietanh · C# / .NET Developer Portfolio
+  </footer>
 </body>
 </html>
