@@ -1,0 +1,52 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website đầu tiên của tôi</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f1f5f9;
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .card {
+            max-width: 500px;
+            margin: auto;
+            padding: 30px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px #0001;
+        }
+
+        h1 { color: #2563eb; }
+
+        button {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            background: #2563eb;
+            color: white;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>Xin chào!</h1>
+        <p>Đây là website đầu tiên của tôi.</p>
+        <button onclick="chao()">Bấm vào đây</button>
+        <p id="ketqua"></p>
+    </div>
+
+    <script>
+        function chao() {
+            document.getElementById("ketqua").textContent =
+                "Chúc mừng! Website của bạn đang hoạt động.";
+        }
+    </script>
+</body>
+</html>
